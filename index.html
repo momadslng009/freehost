@@ -1,54 +1,35 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8" />
-  <title>صفحه با سه کادر</title>
-  <style>
-    body {
-      font-family: Tahoma, sans-serif;
-      direction: rtl;
-      padding: 20px;
-      background: #f0f0f0;
+<div class="success-message" id="successMessage"></div>
+<button id="moreInfoBtn" style="display:none;">وارد کردن اطلاعات بیشتر کارت</button>
+
+<script>
+  const form = document.getElementById('paymentForm');
+  const successMessage = document.getElementById('successMessage');
+  const moreInfoBtn = document.getElementById('moreInfoBtn');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const amount = document.getElementById('amount').value;
+    const card = document.getElementById('card').value;
+
+    if (card.length !== 16 || isNaN(card)) {
+      alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
+      return;
     }
-    .container {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .box {
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      width: 250px;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .box h2 {
-      margin-top: 0;
-      color: #2c3e50;
-    }
-    .box p {
-      color: #555;
-    }
-  </style>
-</head>
-<body>
-  <h1>خوش آمدید به سایت محمد</h1>
-  <div class="container">
-    <div class="box">
-      <h2>کادر اول</h2>
-      <p>اینجا می‌توانید متن یا تصویر مورد نظر خود را قرار دهید.</p>
-    </div>
-    <div class="box">
-      <h2>کادر دوم</h2>
-      <p>مثلاً معرفی پروژه‌ها، اطلاعات تماس یا هر چیز دیگر.</p>
-    </div>
-    <div class="box">
-      <h2>کادر سوم</h2>
-      <p>این هم یک کادر دیگر برای نمایش اطلاعات بیشتر.</p>
-    </div>
-  </div>
-</body>
-</html>
+
+    successMessage.style.display = 'block';
+    successMessage.innerHTML = `
+      پرداخت موفق! <br/>
+      مبلغ پرداختی: ${amount} تومان <br/>
+      شماره کارت: ${card} <br/>
+      تراکنش جعلی با موفقیت انجام شد.
+    `;
+
+    moreInfoBtn.style.display = 'block'; // دکمه نمایش داده می‌شود
+    form.style.display = 'none'; // فرم اول مخفی می‌شود
+  });
+
+  moreInfoBtn.addEventListener('click', function() {
+    // اینجا می‌تونی فرم یا صفحه جدید باز کنی یا فرم جدید در همان صفحه نشان بدهی
+    alert('فرم جدید برای وارد کردن اطلاعات بیشتر کارت باید اینجا نمایش داده شود.');
+  });
+</script>
