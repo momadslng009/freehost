@@ -2,65 +2,53 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>سایت محمد</title>
+  <title>صفحه با سه کادر</title>
   <style>
     body {
       font-family: Tahoma, sans-serif;
-      background: #f0f8ff;
-      color: #333;
-      margin: 0;
-      padding: 0;
       direction: rtl;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    .container {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .box {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
       text-align: center;
     }
-    header {
-      background-color: #007acc;
-      color: white;
-      padding: 20px 0;
-      font-size: 2em;
-      font-weight: bold;
+    .box h2 {
+      margin-top: 0;
+      color: #2c3e50;
     }
-    main {
-      padding: 40px 20px;
-    }
-    h1 {
-      color: #007acc;
-    }
-    p {
-      font-size: 1.2em;
-      max-width: 600px;
-      margin: 20px auto;
-    }
-    a.button {
-      display: inline-block;
-      padding: 12px 25px;
-      margin-top: 30px;
-      background-color: #007acc;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-    a.button:hover {
-      background-color: #005f99;
-    }
-    footer {
-      margin-top: 50px;
-      padding: 20px 0;
-      background-color: #e0e0e0;
+    .box p {
       color: #555;
     }
   </style>
 </head>
 <body>
-  <header>خوش آمدید به سایت محمد</header>
-  <main>
-    <h1>سلام! این صفحه نمونه من است.</h1>
-    <p>اینجا می‌توانید اطلاعات، پروژه‌ها و هر چیزی که دوست دارید را به نمایش بگذارید.</p>
-    <a href="#" class="button">بیشتر بدانید</a>
-  </main>
-  <footer>© 2025 محمد - همه حقوق محفوظ است.</footer>
+  <h1>خوش آمدید به سایت محمد</h1>
+  <div class="container">
+    <div class="box">
+      <h2>کادر اول</h2>
+      <p>اینجا می‌توانید متن یا تصویر مورد نظر خود را قرار دهید.</p>
+    </div>
+    <div class="box">
+      <h2>کادر دوم</h2>
+      <p>مثلاً معرفی پروژه‌ها، اطلاعات تماس یا هر چیز دیگر.</p>
+    </div>
+    <div class="box">
+      <h2>کادر سوم</h2>
+      <p>این هم یک کادر دیگر برای نمایش اطلاعات بیشتر.</p>
+    </div>
+  </div>
 </body>
 </html>
