@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>درگاه پرداخت جعلی - مرحله دوم</title>
+  <style>
+    body { font-family: Tahoma, sans-serif; direction: rtl; background: #f7f7f7; padding: 30px; }
+    .container { max-width: 400px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; }
+    input[type="text"], input[type="number"] { width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+    button { background: #0078d4; color: white; border: none; padding: 12px 20px; border-radius: 5px; font-size: 18px; cursor: pointer; width: 100%; }
+    button:hover { background: #005a9e; }
+    .success-message { color: green; font-weight: bold; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>اطلاعات بیشتر کارت</h1>
+    <form id="form2">
+      <input type="text" id="expiry" placeholder="تاریخ انقضا (مثلا 12/25)" required pattern="\d{2}/\d{2}" />
+      <input type="number" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
+      <button type="submit">پرداخت نهایی</button>
+    </form>
+    <div class="success-message" id="successMessage" style="display:none;"></div>
+  </div>
+
+  <script>
+    // دریافت اطلاعات مرحله اول از URL
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('amount');
+    const card = params.get('card');
+
+    const form2 = document.getElementById('form2');
+    const successMessage = document.getElementById('successMessage');
+
+    form2.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const expiry = document.getElementById('expiry').value;
+      const cvv = document.getElementById('cvv').value;
+
+      if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+        alert('لطفا تاریخ انقضا را به صورت صحیح وارد کنید (مثلا 12/25).');
+        return;
+      }
+      if (cvv.length !== 3 || isNaN(cvv)) {
+        alert('لطفا CVV سه رقمی صحیح وارد کنید.');
+        return;
+      }
+
+      // نمایش پیام موفقیت همراه همه اطلاعات
+      successMessage.style.display = 'block';
+      successMessage.innerHTML = `
+        پرداخت موفق! <br/>
+        مبلغ پرداختی: ${amount} تومان <br/>
+        شماره کارت: ${card} <br/>
+        تاریخ انقضا: ${expiry} <br/>
+        CVV: ${cvv} <br/>
+        تراکنش جعلی با موفقیت انجام شد.
+      `;
+
+      form2.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
+
