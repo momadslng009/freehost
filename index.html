@@ -1,42 +1,103 @@
-<!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8" />
-  <title>درگاه پرداخت جعلی - مرحله اول</title>
+  <title>درگاه پرداخت جعلی آموزشی</title>
   <style>
-    body { font-family: Tahoma, sans-serif; direction: rtl; background: #f7f7f7; padding: 30px; }
-    .container { max-width: 400px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; }
-    input[type="text"], input[type="number"] { width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
-    button { background: #0078d4; color: white; border: none; padding: 12px 20px; border-radius: 5px; font-size: 18px; cursor: pointer; width: 100%; }
-    button:hover { background: #005a9e; }
+    body {
+      font-family: Tahoma, sans-serif;
+      direction: rtl;
+      background: #f0f0f0;
+      padding: 30px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #0078d4;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005a9e;
+    }
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>درگاه پرداخت جعلی</h1>
-    <form id="form1">
-      <input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1" />
-      <input type="text" id="card" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
-      <button type="submit">مرحله بعد</button>
+    <h1>درگاه پرداخت جعلی آموزشی</h1>
+    <form id="paymentForm">
+      <input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1000" />
+      <input type="text" id="cardNumber" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
+      <input type="text" id="cardHolder" placeholder="نام صاحب کارت" required />
+      <input type="text" id="expiryDate" placeholder="تاریخ انقضا (MM/YY)" required pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" />
+      <input type="text" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
+      <button type="submit">پرداخت</button>
     </form>
+    <div class="message" id="successMessage"></div>
   </div>
 
   <script>
-    const form1 = document.getElementById('form1');
-    form1.addEventListener('submit', function(event) {
-      event.preventDefault();
+    const form = document.getElementById('paymentForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
       const amount = document.getElementById('amount').value;
-      const card = document.getElementById('card').value;
+      const cardNumber = document.getElementById('cardNumber').value;
+      const cardHolder = document.getElementById('cardHolder').value.trim();
+      const expiryDate = document.getElementById('expiryDate').value;
+      const cvv = document.getElementById('cvv').value;
 
-      if (card.length !== 16 || isNaN(card)) {
+      if (cardNumber.length !== 16 || isNaN(cardNumber)) {
         alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
         return;
       }
+      if (!cardHolder) {
+        alert('لطفا نام صاحب کارت را وارد کنید.');
+        return;
+      }
+      if (!expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
+        alert('تاریخ انقضا را به صورت MM/YY وارد کنید.');
+        return;
+      }
+      if (cvv.length !== 3 || isNaN(cvv)) {
+        alert('کد CVV باید 3 رقم باشد.');
+        return;
+      }
 
-      // اطلاعات را به صفحه دوم میفرستیم با query params
-      const url = `step2.html?amount=${encodeURIComponent(amount)}&card=${encodeURIComponent(card)}`;
-      window.location.href = url;
+      successMessage.style.display = 'block';
+      successMessage.innerHTML = `
+        پرداخت موفق! <br/>
+        مبلغ: ${amount} تومان <br/>
+        شماره کارت: ${cardNumber} <br/>
+        نام صاحب کارت: ${cardHolder} <br/>
+        تاریخ انقضا: ${expiryDate} <br/>
+        CVV: ${cvv} <br/>
+        تراکنش آموزشی با موفقیت انجام شد.
+      `;
+      form.reset();
     });
   </script>
 </body>
