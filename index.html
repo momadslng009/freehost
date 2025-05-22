@@ -1,11 +1,87 @@
-DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8" />
-  <title>صفحه ساده من</title>
-</head>
-<body style="font-family: Tahoma, sans-serif; text-align: center; padding: 50px;">
-  <h1>سلام محمد!</h1>
-  <p>امیدوارم حالت خوب بشه و زود استراحت کنی.</p>
-  <p>این یه صفحه ساده است که ساختیم فقط برای شروع.</p>
-</body>
+01 <!DOCTYPE html>
+02 <html lang="fa">
+03 <head>
+04   <meta charset="UTF-8" />
+05   <title>درگاه پرداخت جعلی</title>
+06   <style>
+07     body {
+08       font-family: Tahoma, sans-serif;
+09       direction: rtl;
+10       background: #f7f7f7;
+11       padding: 30px;
+12     }
+13     .container {
+14       max-width: 400px;
+15       margin: auto;
+16       background: white;
+17       padding: 25px;
+18       border-radius: 8px;
+19       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+20       text-align: center;
+21     }
+22     input[type="text"], input[type="number"] {
+23       width: 100%;
+24       padding: 10px;
+25       margin: 10px 0 20px 0;
+26       border: 1px solid #ccc;
+27       border-radius: 5px;
+28       font-size: 16px;
+29     }
+30     button {
+31       background: #0078d4;
+32       color: white;
+33       border: none;
+34       padding: 12px 20px;
+35       border-radius: 5px;
+36       font-size: 18px;
+37       cursor: pointer;
+38       width: 100%;
+39     }
+40     button:hover {
+41       background: #005a9e;
+42     }
+43     .success-message {
+44       display: none;
+45       margin-top: 20px;
+46       color: green;
+47       font-weight: bold;
+48     }
+49   </style>
+50 </head>
+51 <body>
+52   <div class="container">
+53     <h1>درگاه پرداخت جعلی</h1>
+54     <form id="paymentForm">
+55       <input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1" />
+56       <input type="text" id="card" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
+57       <button type="submit">پرداخت</button>
+58     </form>
+59     <div class="success-message" id="successMessage"></div>
+60   </div>
+61
+62   <script>
+63     const form = document.getElementById('paymentForm');
+64     const successMessage = document.getElementById('successMessage');
+65
+66     form.addEventListener('submit', function(event) {
+67       event.preventDefault();
+68       const amount = document.getElementById('amount').value;
+69       const card = document.getElementById('card').value;
+70
+71       if (card.length !== 16 || isNaN(card)) {
+72         alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
+73         return;
+74       }
+75
+76       successMessage.style.display = 'block';
+77       successMessage.innerHTML = `
+78         پرداخت موفق! <br/>
+79         مبلغ پرداختی: ${amount} تومان <br/>
+80         شماره کارت: ${card} <br/>
+81         تراکنش جعلی با موفقیت انجام شد.
+82       `;
+83       form.reset();
+84     });
+85   </script>
+86 </body>
+87 </html>
