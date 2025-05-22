@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="fa">
 <head>
 <meta charset="UTF-8" />
@@ -9,7 +9,11 @@ body, html {
   height: 100%;
   margin: 0;
   font-family: "Tahoma", sans-serif;
-  background: linear-gradient(135deg, #a8e063, #56ab2f);
+  background: repeating-conic-gradient(
+    from 45deg,
+    #0047ab 0deg 15deg,
+    #d32f2f 15deg 30deg
+  );
   direction: rtl;
   display: flex;
   justify-content: center;
@@ -18,9 +22,9 @@ body, html {
 .container {
   background: #fff;
   border-radius: 25px;
-  padding: 50px 60px;
+  padding: 40px 45px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-  width: 450px;
+  width: 350px;
   max-width: 90vw;
   text-align: center;
   transition: transform 0.3s ease;
@@ -30,22 +34,22 @@ body, html {
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 .apple-icon {
-  font-size: 50px;
+  font-size: 45px;
   color: #4caf50;
   margin-bottom: 20px;
   user-select: none;
 }
 h1 {
   color: #2e7d32;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 24px;
 }
 input, button {
   width: 100%;
-  padding: 18px 20px;
-  margin: 12px 0;
-  font-size: 20px;
+  padding: 15px 18px;
+  margin: 10px 0;
+  font-size: 18px;
   border-radius: 14px;
   border: 1.8px solid #cfcfcf;
   transition: 0.3s;
@@ -70,13 +74,13 @@ button:hover {
   box-shadow: 0 8px 20px rgba(56, 142, 60, 0.6);
 }
 .message {
-  margin-top: 30px;
-  padding: 25px;
+  margin-top: 25px;
+  padding: 20px;
   background-color: #e8f5e9;
   border: 1.5px solid #c8e6c9;
   border-radius: 14px;
   color: #2e7d32;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   opacity: 0;
   transform: translateY(20px);
@@ -89,38 +93,38 @@ button:hover {
 }
 @media (max-width: 500px) {
   .container {
-    padding: 35px 25px;
+    padding: 30px 20px;
     width: 95vw;
   }
   h1 {
-    font-size: 24px;
-    margin-bottom: 30px;
+    font-size: 20px;
+    margin-bottom: 25px;
   }
   input, button {
-    font-size: 18px;
-    padding: 15px 12px;
+    font-size: 16px;
+    padding: 12px 10px;
   }
   .message {
-    font-size: 18px;
-    padding: 20px;
-    margin-top: 25px;
+    font-size: 16px;
+    padding: 15px;
+    margin-top: 20px;
   }
 }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="apple-icon">🍏🍎</div>
-<h1>درگاه پرداخت لینکدونی سیب</h1>
-<form id="paymentForm">
-<input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1000" />
-<input type="text" id="cardNumber" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
-<input type="text" id="cardHolder" placeholder="نام صاحب کارت" required />
-<input type="text" id="expiryDate" placeholder="تاریخ انقضا (MM/YY)" required pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" />
-<input type="text" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
-<button type="submit">پرداخت</button>
-</form>
-<div class="message" id="successMessage"></div>
+  <div class="apple-icon">🍏🍎</div>
+  <h1>درگاه پرداخت لینکدونی سیب</h1>
+  <form id="paymentForm">
+    <input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1000" />
+    <input type="text" id="cardNumber" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
+    <input type="text" id="cardHolder" placeholder="نام صاحب کارت" required />
+    <input type="text" id="expiryDate" placeholder="تاریخ انقضا (MM/YY)" required pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" />
+    <input type="text" id="cvv" placeholder="CVV (3 رقم)" required pattern="\d{3}" maxlength="3" />
+    <button type="submit">پرداخت</button>
+  </form>
+  <div class="message" id="successMessage"></div>
 </div>
 <script>
 const form = document.getElementById('paymentForm');
