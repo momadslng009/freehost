@@ -1,35 +1,87 @@
-<div class="success-message" id="successMessage"></div>
-<button id="moreInfoBtn" style="display:none;">وارد کردن اطلاعات بیشتر کارت</button>
-
-<script>
-  const form = document.getElementById('paymentForm');
-  const successMessage = document.getElementById('successMessage');
-  const moreInfoBtn = document.getElementById('moreInfoBtn');
-
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const amount = document.getElementById('amount').value;
-    const card = document.getElementById('card').value;
-
-    if (card.length !== 16 || isNaN(card)) {
-      alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
-      return;
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>درگاه پرداخت جعلی</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      direction: rtl;
+      background: #f7f7f7;
+      padding: 30px;
     }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background: #0078d4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #005a9e;
+    }
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>درگاه پرداخت جعلی</h1>
+    <form id="paymentForm">
+      <input type="number" id="amount" placeholder="مبلغ پرداختی (تومان)" required min="1" />
+      <input type="text" id="card" placeholder="شماره کارت (16 رقم)" required pattern="\d{16}" maxlength="16" />
+      <button type="submit">پرداخت</button>
+    </form>
+    <div class="success-message" id="successMessage"></div>
+  </div>
 
-    successMessage.style.display = 'block';
-    successMessage.innerHTML = `
-      پرداخت موفق! <br/>
-      مبلغ پرداختی: ${amount} تومان <br/>
-      شماره کارت: ${card} <br/>
-      تراکنش جعلی با موفقیت انجام شد.
-    `;
+  <script>
+    const form = document.getElementById('paymentForm');
+    const successMessage = document.getElementById('successMessage');
 
-    moreInfoBtn.style.display = 'block'; // دکمه نمایش داده می‌شود
-    form.style.display = 'none'; // فرم اول مخفی می‌شود
-  });
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const amount = document.getElementById('amount').value;
+      const card = document.getElementById('card').value;
 
-  moreInfoBtn.addEventListener('click', function() {
-    // اینجا می‌تونی فرم یا صفحه جدید باز کنی یا فرم جدید در همان صفحه نشان بدهی
-    alert('فرم جدید برای وارد کردن اطلاعات بیشتر کارت باید اینجا نمایش داده شود.');
-  });
-</script>
+      if (card.length !== 16 || isNaN(card)) {
+        alert('لطفا شماره کارت 16 رقمی صحیح وارد کنید.');
+        return;
+      }
+
+      successMessage.style.display = 'block';
+      successMessage.innerHTML = `
+        پرداخت موفق! <br/>
+        مبلغ پرداختی: ${amount} تومان <br/>
+        شماره کارت: ${card} <br/>
+        تراکنش جعلی با موفقیت انجام شد.
+      `;
+      form.reset();
+    });
+  </script>
+</body>
+</html>
